@@ -1,0 +1,218 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.DefaultCompany.Embodied_miniproject"
+4    android:installLocation="auto"
+5    android:versionCode="1"
+6    android:versionName="0.1.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="23"
+9-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml
+10        android:targetSdkVersion="30" />
+10-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml
+11
+12    <supports-screens
+12-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:3:3-163
+13        android:anyDensity="true"
+13-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:3:135-160
+14        android:largeScreens="true"
+14-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:3:78-105
+15        android:normalScreens="true"
+15-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:3:49-77
+16        android:smallScreens="true"
+16-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:3:21-48
+17        android:xlargeScreens="true" />
+17-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:3:106-134
+18
+19    <uses-feature android:glEsVersion="0x00030000" />
+19-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:13:5-54
+19-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:13:19-51
+20
+21    <supports-gl-texture android:name="GL_KHR_texture_compression_astc_ldr" />
+21-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:15:5-79
+21-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:15:26-76
+22
+23    <uses-permission android:name="android.permission.INTERNET" />
+23-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:17:5-67
+23-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:17:22-64
+24    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+24-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:18:5-71
+24-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:18:22-68
+25    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+25-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:19:5-80
+25-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:19:22-77
+26
+27    <uses-feature
+27-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:21:5-23:36
+28        android:name="android.hardware.microphone"
+28-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:22:9-51
+29        android:required="false" />
+29-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:23:9-33
+30    <uses-feature
+30-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:24:5-26:36
+31        android:name="android.hardware.touchscreen"
+31-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:25:9-52
+32        android:required="false" />
+32-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:26:9-33
+33    <uses-feature
+33-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:27:5-29:36
+34        android:name="android.hardware.touchscreen.multitouch"
+34-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:28:9-63
+35        android:required="false" />
+35-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:29:9-33
+36    <uses-feature
+36-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:30:5-32:36
+37        android:name="android.hardware.touchscreen.multitouch.distinct"
+37-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:31:9-72
+38        android:required="false" />
+38-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:32:9-33
+39    <uses-feature
+39-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:33:5-36:31
+40        android:name="android.hardware.vr.headtracking"
+40-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:34:9-56
+41        android:required="true"
+41-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:35:9-32
+42        android:version="1" />
+42-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:36:9-28
+43    <uses-feature
+43-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:37:5-39:36
+44        android:name="oculus.software.handtracking"
+44-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:38:9-52
+45        android:required="false" />
+45-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:39:9-33
+46
+47    <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />
+47-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:41:5-75
+47-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:41:22-72
+48
+49    <application
+49-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:4:3-83
+50        android:allowBackup="false"
+50-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:44:9-36
+51        android:extractNativeLibs="true"
+51-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:45:9-41
+52        android:icon="@mipmap/app_icon"
+52-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:4:49-80
+53        android:label="@string/app_name"
+53-->/Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/AndroidManifest.xml:4:16-48
+54        android:networkSecurityConfig="@xml/network_sec_config" >
+54-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:48:9-64
+55        <activity
+55-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:49:9-73:20
+56            android:name="com.unity3d.player.UnityPlayerActivity"
+56-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:50:13-66
+57            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|uiMode"
+57-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:51:13-114
+58            android:hardwareAccelerated="false"
+58-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:52:13-48
+59            android:launchMode="singleTask"
+59-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:53:13-44
+60            android:resizeableActivity="false"
+60-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:54:13-47
+61            android:screenOrientation="landscape"
+61-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:55:13-50
+62            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+62-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:56:13-77
+63            <intent-filter>
+63-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:57:13-62:29
+64                <action android:name="android.intent.action.MAIN" />
+64-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:58:17-69
+64-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:58:25-66
+65
+66                <category android:name="android.intent.category.LAUNCHER" />
+66-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:60:17-77
+66-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:60:27-74
+67                <category android:name="com.oculus.intent.category.VR" />
+67-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:61:17-74
+67-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:61:27-71
+68            </intent-filter>
+69
+70            <meta-data
+70-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:64:13-66:40
+71                android:name="unityplayer.UnityActivity"
+71-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:65:17-57
+72                android:value="true" />
+72-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:66:17-37
+73            <meta-data
+73-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:67:13-69:40
+74                android:name="android.notch_support"
+74-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:68:17-53
+75                android:value="true" />
+75-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:69:17-37
+76            <meta-data
+76-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:70:13-72:40
+77                android:name="com.oculus.vr.focusaware"
+77-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:71:17-56
+78                android:value="true" />
+78-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:72:17-37
+79        </activity>
+80
+81        <meta-data
+81-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:75:9-77:33
+82            android:name="unity.splash-mode"
+82-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:76:13-45
+83            android:value="0" />
+83-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:77:13-30
+84        <meta-data
+84-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:78:9-80:36
+85            android:name="unity.splash-enable"
+85-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:79:13-47
+86            android:value="True" />
+86-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:80:13-33
+87        <meta-data
+87-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:81:9-83:36
+88            android:name="unity.launch-fullscreen"
+88-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:82:13-51
+89            android:value="True" />
+89-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:83:13-33
+90        <meta-data
+90-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:84:9-86:37
+91            android:name="unity.allow-resizable-window"
+91-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:85:13-56
+92            android:value="False" />
+92-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:86:13-34
+93        <meta-data
+93-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:87:9-89:50
+94            android:name="notch.config"
+94-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:88:13-40
+95            android:value="portrait|landscape" />
+95-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:89:13-47
+96        <meta-data
+96-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:90:9-92:39
+97            android:name="com.samsung.android.vr.application.mode"
+97-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:91:13-67
+98            android:value="vr_only" />
+98-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:92:13-36
+99        <meta-data
+99-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:93:9-95:37
+100            android:name="com.unity.xr.oculus.LowOverheadMode"
+100-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:94:13-63
+101            android:value="false" />
+101-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:95:13-34
+102        <meta-data
+102-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:96:9-98:37
+103            android:name="com.unity.xr.oculus.LateLatching"
+103-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:97:13-60
+104            android:value="false" />
+104-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:98:13-34
+105        <meta-data
+105-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:99:9-101:37
+106            android:name="com.unity.xr.oculus.LateLatchingDebug"
+106-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:100:13-65
+107            android:value="false" />
+107-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:101:13-34
+108        <meta-data
+108-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:102:9-104:44
+109            android:name="com.oculus.supportedDevices"
+109-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:103:13-55
+110            android:value="quest|quest2" />
+110-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:104:13-41
+111        <meta-data
+111-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:105:9-107:36
+112            android:name="com.oculus.handtracking.frequency"
+112-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:106:13-61
+113            android:value="HIGH" />
+113-->[:unityLibrary] /Users/balazsivanyi/EI/Embodied_miniproject/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/intermediates/library_manifest/release/AndroidManifest.xml:107:13-33
+114    </application>
+115
+116</manifest>

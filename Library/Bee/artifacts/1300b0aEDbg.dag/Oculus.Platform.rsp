@@ -425,7 +425,6 @@
 "Assets/Oculus/Platform/Scripts/Models/AssetFileDownloadCancelResult.cs"
 "Assets/Oculus/Platform/Scripts/Models/AssetFileDownloadResult.cs"
 "Assets/Oculus/Platform/Scripts/Models/AssetFileDownloadUpdate.cs"
-"Assets/Oculus/Platform/Scripts/Models/BlockedUser.cs"
 "Assets/Oculus/Platform/Scripts/Models/CalApplicationFinalized.cs"
 "Assets/Oculus/Platform/Scripts/Models/CalApplicationProposed.cs"
 "Assets/Oculus/Platform/Scripts/Models/CalApplicationSuggestion.cs"

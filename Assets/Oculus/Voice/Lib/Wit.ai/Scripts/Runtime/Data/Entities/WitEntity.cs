@@ -23,29 +23,7 @@ namespace Facebook.WitAi.Data.Entities
         [SerializeField] public WitEntityRole[] roles;
         [SerializeField] public WitKeyword[] keywords;
 
-        public static class Fields
-        {
-            public const string ID = "id";
-            public const string NAME = "name";
-            public const string ROLE= "role";
-
-            public const string START = "start";
-            public const string END = "end";
-
-            public const string TYPE = "type";
-
-            public const string BODY = "body";
-            public const string VALUE = "value";
-            public const string CONFIDENCE = "confidence";
-
-            public const string ENTITIES = "entities";
-
-            public const string LOOKUPS = "lookups";
-            public const string ROLES = "roles";
-            public const string KEYWORDS = "keywords";
-        }
-
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         protected override WitRequest OnCreateRequest()
         {
             return witConfiguration.GetEntityRequest(name);
@@ -53,16 +31,16 @@ namespace Facebook.WitAi.Data.Entities
 
         public override void UpdateData(WitResponseNode entityWitResponse)
         {
-            id = entityWitResponse[Fields.ID].Value;
-            name = entityWitResponse[Fields.NAME].Value;
-            lookups = entityWitResponse[Fields.LOOKUPS].AsStringArray;
-            var roleArray = entityWitResponse[Fields.ROLES].AsArray;
+            id = entityWitResponse["id"].Value;
+            name = entityWitResponse["name"].Value;
+            lookups = entityWitResponse["lookups"].AsStringArray;
+            var roleArray = entityWitResponse["roles"].AsArray;
             roles = new WitEntityRole[roleArray.Count];
             for (int i = 0; i < roleArray.Count; i++)
             {
                 roles[i] = WitEntityRole.FromJson(roleArray[i]);
             }
-            var keywordArray = entityWitResponse[Fields.KEYWORDS].AsArray;
+            var keywordArray = entityWitResponse["keywords"].AsArray;
             keywords = new WitKeyword[keywordArray.Count];
             for (int i = 0; i < keywordArray.Count; i++)
             {

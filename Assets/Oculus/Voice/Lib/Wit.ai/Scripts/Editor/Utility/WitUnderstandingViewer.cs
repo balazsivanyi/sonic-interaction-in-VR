@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Facebook.WitAi.CallbackHandlers;
 using Facebook.WitAi.Configuration;
 using Facebook.WitAi.Data;
@@ -33,8 +32,6 @@ namespace Facebook.WitAi.Windows
         private VoiceService wit;
         private int responseCode;
         private WitRequest request;
-        private int savePopup;
-        private GUIStyle hamburgerButton;
 
         public bool HasWit => null != wit;
 
@@ -57,8 +54,8 @@ namespace Facebook.WitAi.Windows
             }
         }
 
-        protected override GUIContent Title => WitTexts.UnderstandingTitleContent;
-        protected override WitTexts.WitAppEndpointType HeaderEndpointType => WitTexts.WitAppEndpointType.Understanding;
+        protected override GUIContent Title => WitStyles.UnderstandingTitleContent;
+        protected override WitStyles.WitAppEndpointType HeaderEndpointType => WitStyles.WitAppEndpointType.Understanding;
 
         protected override void OnEnable()
         {
@@ -69,7 +66,7 @@ namespace Facebook.WitAi.Windows
             {
                 response = WitResponseNode.Parse(responseText);
             }
-            status = WitTexts.Texts.UnderstandingViewerPromptLabel;
+            status = WitStyles.Texts.UnderstandingViewerPromptLabel;
         }
 
         protected override void OnDisable()
@@ -145,42 +142,7 @@ namespace Facebook.WitAi.Windows
         protected override void OnGUI()
         {
             base.OnGUI();
-            EditorGUILayout.BeginHorizontal();
             WitEditorUI.LayoutStatusLabel(status);
-            GUILayout.BeginVertical(GUILayout.Width(24));
-            GUILayout.Space(4);
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(4);
-            var rect = GUILayoutUtility.GetLastRect();
-
-            if (null == hamburgerButton)
-            {
-                // GUI.skin must be called from OnGUI
-                hamburgerButton = new GUIStyle(GUI.skin.GetStyle("PaneOptions"));
-                hamburgerButton.imagePosition = ImagePosition.ImageOnly;
-            }
-
-            var value = EditorGUILayout.Popup(-1, new string[] {"Save", "Copy to Clipboard"}, hamburgerButton, GUILayout.Width(24));
-            if (-1 != value)
-            {
-                if (value == 0)
-                {
-                    var path = EditorUtility.SaveFilePanel("Save Response Json", Application.dataPath,
-                        "result", "json");
-                    if (!string.IsNullOrEmpty(path))
-                    {
-                        File.WriteAllText(path, response.ToString());
-                    }
-                }
-                else
-                {
-                    EditorGUIUtility.systemCopyBuffer = response.ToString();
-                }
-            }
-
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.EndVertical();
-            EditorGUILayout.EndHorizontal();
         }
 
         protected override void LayoutContent()
@@ -191,17 +153,17 @@ namespace Facebook.WitAi.Windows
             // Need configuration
             if (!witConfiguration)
             {
-                WitEditorUI.LayoutErrorLabel(WitTexts.Texts.UnderstandingViewerMissingConfigLabel);
+                WitEditorUI.LayoutErrorLabel(WitStyles.Texts.UnderstandingViewerMissingConfigLabel);
                 return;
             }
             // Need app id
-            string clientAccessToken = witConfiguration.clientAccessToken;
-            if (string.IsNullOrEmpty(clientAccessToken))
+            string appID = WitConfigurationUtility.GetAppID(witConfiguration);
+            if (string.IsNullOrEmpty(appID))
             {
-                WitEditorUI.LayoutErrorLabel(WitTexts.Texts.UnderstandingViewerNoAppLabel);
+                WitEditorUI.LayoutErrorLabel(WitStyles.Texts.UnderstandingViewerNoAppLabel);
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
-                if (WitEditorUI.LayoutTextButton(WitTexts.Texts.UnderstandingViewerSettingsButtonLabel))
+                if (WitEditorUI.LayoutTextButton(WitStyles.Texts.UnderstandingViewerSettingsButtonLabel))
                 {
                     Selection.activeObject = witConfiguration;
                 }
@@ -209,12 +171,10 @@ namespace Facebook.WitAi.Windows
                 return;
             }
             bool updated = false;
-            bool allowInput = !wit || !wit.Active;
-            GUI.enabled = allowInput;
-            WitEditorUI.LayoutTextField(new GUIContent(WitTexts.Texts.UnderstandingViewerUtteranceLabel), ref utterance, ref updated);
+            WitEditorUI.LayoutTextField(new GUIContent(WitStyles.Texts.UnderstandingViewerUtteranceLabel), ref utterance, ref updated);
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            if (allowInput && WitEditorUI.LayoutTextButton(WitTexts.Texts.UnderstandingViewerSubmitButtonLabel))
+            if (WitEditorUI.LayoutTextButton(WitStyles.Texts.UnderstandingViewerSubmitButtonLabel) && (null == request || !request.IsActive))
             {
                 responseText = "";
                 if (!string.IsNullOrEmpty(utterance))
@@ -226,21 +186,20 @@ namespace Facebook.WitAi.Windows
                     response = null;
                 }
             }
-            GUI.enabled = true;
 
             if (EditorApplication.isPlaying && wit)
             {
-                if (!wit.Active && WitEditorUI.LayoutTextButton(WitTexts.Texts.UnderstandingViewerActivateButtonLabel))
+                if (!wit.Active && WitEditorUI.LayoutTextButton(WitStyles.Texts.UnderstandingViewerActivateButtonLabel))
                 {
                     wit.Activate();
                 }
 
-                if (wit.Active && WitEditorUI.LayoutTextButton(WitTexts.Texts.UnderstandingViewerDeactivateButtonLabel))
+                if (wit.Active && WitEditorUI.LayoutTextButton(WitStyles.Texts.UnderstandingViewerDeactivateButtonLabel))
                 {
                     wit.Deactivate();
                 }
 
-                if (wit.Active && WitEditorUI.LayoutTextButton(WitTexts.Texts.UnderstandingViewerAbortButtonLabel))
+                if (wit.Active && WitEditorUI.LayoutTextButton(WitStyles.Texts.UnderstandingViewerAbortButtonLabel))
                 {
                     wit.DeactivateAndAbortRequest();
                 }
@@ -251,11 +210,11 @@ namespace Facebook.WitAi.Windows
             GUILayout.BeginVertical(EditorStyles.helpBox);
             if (wit && wit.MicActive)
             {
-                WitEditorUI.LayoutWrapLabel(WitTexts.Texts.UnderstandingViewerListeningLabel);
+                WitEditorUI.LayoutWrapLabel(WitStyles.Texts.UnderstandingViewerListeningLabel);
             }
             else if (wit && wit.IsRequestActive)
             {
-                WitEditorUI.LayoutWrapLabel(WitTexts.Texts.UnderstandingViewerLoadingLabel);
+                WitEditorUI.LayoutWrapLabel(WitStyles.Texts.UnderstandingViewerLoadingLabel);
             }
             else if (response != null)
             {
@@ -263,7 +222,7 @@ namespace Facebook.WitAi.Windows
             }
             else if (string.IsNullOrEmpty(responseText))
             {
-                WitEditorUI.LayoutWrapLabel(WitTexts.Texts.UnderstandingViewerPromptLabel);
+                WitEditorUI.LayoutWrapLabel(WitStyles.Texts.UnderstandingViewerPromptLabel);
             }
             else
             {
@@ -285,7 +244,7 @@ namespace Facebook.WitAi.Windows
 
             if (wit && Application.isPlaying)
             {
-                status = WitTexts.Texts.UnderstandingViewerListeningLabel;
+                status = WitStyles.Texts.UnderstandingViewerListeningLabel;
                 responseText = status;
                 wit.Activate(utterance);
                 // Hack to watch for loading to complete. Response does not
@@ -295,7 +254,7 @@ namespace Facebook.WitAi.Windows
             }
             else
             {
-                status = WitTexts.Texts.UnderstandingViewerLoadingLabel;
+                status = WitStyles.Texts.UnderstandingViewerLoadingLabel;
                 responseText = status;
                 submitStart = System.DateTime.Now;
                 request = witConfiguration.MessageRequest(utterance, new WitRequestOptions());

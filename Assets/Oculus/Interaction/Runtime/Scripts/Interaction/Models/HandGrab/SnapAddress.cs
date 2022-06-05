@@ -29,9 +29,7 @@ namespace Oculus.Interaction.HandPosing
         public HandPose HandPose => _isHandPoseValid ? _handPose : null;
 
         public Pose WorldSnapPose => Interactable.RelativeTo.GlobalPose(SnapPoint);
-        public HandAlignType HandAlignment => Interactable != null ?
-            Interactable.HandAlignment : HandAlignType.None;
-
+        public SnapType SnapType => Interactable != null ? Interactable.SnapType : SnapType.None;
         public bool SnappedToPinch { get; private set; }
 
         private bool _isHandPoseValid = false;

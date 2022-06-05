@@ -10,11 +10,9 @@
  * permissions and limitations under the License.
  **************************************************************************************************/
 
-using Facebook.WitAi;
 using Facebook.WitAi.Windows;
 using UnityEngine;
 using Oculus.Voice.Utility;
-using Oculus.Voice.Inspectors;
 
 namespace Oculus.Voice.Windows
 {
@@ -22,6 +20,5 @@ namespace Oculus.Voice.Windows
     {
         protected override GUIContent Title => VoiceSDKStyles.UnderstandingTitle;
         protected override Texture2D HeaderIcon => VoiceSDKStyles.MainHeader;
-        protected override string HeaderUrl => AppVoiceExperienceWitConfigurationEditor.GetSafeAppUrl(witConfiguration, WitTexts.WitAppEndpointType.Understanding);
     }
 }

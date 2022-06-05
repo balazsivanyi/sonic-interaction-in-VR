@@ -23,21 +23,21 @@ namespace Facebook.WitAi.Windows
             switch (key)
             {
                 case LocalizedTitleKey:
-                    return WitTexts.Texts.ConfigurationApplicationTabLabel;
+                    return WitStyles.Texts.ConfigurationApplicationTabLabel;
                 case LocalizedMissingKey:
-                    return WitTexts.Texts.ConfigurationApplicationMissingLabel;
+                    return WitStyles.Texts.ConfigurationApplicationMissingLabel;
                 case "name":
-                    return WitTexts.Texts.ConfigurationApplicationNameLabel;
+                    return WitStyles.Texts.ConfigurationApplicationNameLabel;
                 case "id":
-                    return WitTexts.Texts.ConfigurationApplicationIdLabel;
+                    return WitStyles.Texts.ConfigurationApplicationIdLabel;
                 case "lang":
-                    return WitTexts.Texts.ConfigurationApplicationLanguageLabel;
+                    return WitStyles.Texts.ConfigurationApplicationLanguageLabel;
                 case "isPrivate":
-                    return WitTexts.Texts.ConfigurationApplicationPrivateLabel;
+                    return WitStyles.Texts.ConfigurationApplicationPrivateLabel;
                 case "createdAt":
-                    return WitTexts.Texts.ConfigurationApplicationCreatedLabel;
+                    return WitStyles.Texts.ConfigurationApplicationCreatedLabel;
             }
-
+            
             // Default to base
             return base.GetLocalizedText(property, key);
         }

@@ -52,7 +52,6 @@
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Data\Configuration\IApplicationDetailProvider.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Data\Configuration\WitApplicationDetailProvider.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\CallbackHandlers\ValuePathMatcherPropertyDrawer.cs" />
-     <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\WitTexts.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Windows\PropertyDrawers\WitPropertyDrawer.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Windows\PropertyDrawers\WitTraitPropertyDrawer.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Utility\WitUnderstandingViewer.cs" />
@@ -62,7 +61,6 @@
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Data\Configuration\WitWindow.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Windows\PropertyDrawers\WitTraitValuePropertyDrawer.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\WitConfigurationEditorUI.cs" />
-     <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Windows\PropertyDrawers\ConfidenceRangeDrawer.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Data\WitDataCreation.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Windows\PropertyDrawers\WitEntityRolePropertyDrawer.cs" />
      <Compile Include="Assets\Oculus\Voice\Lib\Wit.ai\Scripts\Editor\Windows\WitConfigurationWindow.cs" />

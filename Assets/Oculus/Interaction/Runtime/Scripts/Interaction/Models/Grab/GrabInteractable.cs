@@ -15,7 +15,7 @@ using UnityEngine.Assertions;
 
 namespace Oculus.Interaction
 {
-    public class GrabInteractable : PointerInteractable<GrabInteractor, GrabInteractable>,
+    public class GrabInteractable : Interactable<GrabInteractor, GrabInteractable>,
                                       IRigidbodyRef
     {
         private Collider[] _colliders;
@@ -24,6 +24,10 @@ namespace Oculus.Interaction
         [SerializeField]
         Rigidbody _rigidbody;
         public Rigidbody Rigidbody => _rigidbody;
+
+        [SerializeField]
+        private Grabbable _grabbable;
+        public Grabbable Grabbable => _grabbable;
 
         [SerializeField, Optional]
         private Transform _grabSource;
@@ -41,6 +45,8 @@ namespace Oculus.Interaction
         private PhysicsGrabbable _physicsGrabbable = null;
 
         private static CollisionInteractionRegistry<GrabInteractor, GrabInteractable> _grabRegistry = null;
+
+        protected bool _started = false;
 
         #region Properties
         public bool UseClosestPointAsGrabSource
@@ -79,9 +85,8 @@ namespace Oculus.Interaction
         }
         #endregion
 
-        protected override void Awake()
+        protected virtual void Awake()
         {
-            base.Awake();
             if (_grabRegistry == null)
             {
                 _grabRegistry = new CollisionInteractionRegistry<GrabInteractor, GrabInteractable>();
@@ -89,14 +94,44 @@ namespace Oculus.Interaction
             }
         }
 
-        protected override void Start()
+        protected virtual void Start()
         {
-            this.BeginStart(ref _started, base.Start);
+            this.BeginStart(ref _started);
+
             Assert.IsNotNull(Rigidbody);
             _colliders = Rigidbody.GetComponentsInChildren<Collider>();
             Assert.IsTrue(Colliders.Length > 0,
             "The associated Rigidbody must have at least one Collider.");
+            Assert.IsNotNull(_grabbable);
             this.EndStart(ref _started);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (_started)
+            {
+                Grabbable.WhenGrabbableUpdated += HandleGrabbableUpdated;
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            if (_started)
+            {
+                Grabbable.WhenGrabbableUpdated -= HandleGrabbableUpdated;
+            }
+            base.OnDisable();
+        }
+
+        private void HandleGrabbableUpdated(GrabbableArgs args)
+        {
+            switch (args.GrabbableEvent)
+            {
+                case GrabbableEvent.Remove:
+                    RemoveInteractorById(args.GrabIdentifier);
+                    break;
+            }
         }
 
         public Pose GetGrabSourceForTarget(Pose target)
@@ -127,14 +162,20 @@ namespace Oculus.Interaction
 
         #region Inject
 
-        public void InjectAllGrabInteractable(Rigidbody rigidbody)
+        public void InjectAllGrabInteractable(Rigidbody rigidbody, Grabbable grabbable)
         {
             InjectRigidbody(rigidbody);
+            InjectGrabbable(grabbable);
         }
 
         public void InjectRigidbody(Rigidbody rigidbody)
         {
             _rigidbody = rigidbody;
+        }
+
+        public void InjectGrabbable(Grabbable grabbable)
+        {
+            _grabbable = grabbable;
         }
 
         public void InjectOptionalGrabSource(Transform grabSource)

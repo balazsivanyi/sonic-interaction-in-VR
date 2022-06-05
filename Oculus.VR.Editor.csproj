@@ -969,12 +969,6 @@
      <Reference Include="Unity.XR.Oculus">
      <HintPath>D:\Student Projects\MED8_balazsivanyi\embodied_interaction_miniproject\Library\ScriptAssemblies\Unity.XR.Oculus.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.XR.OpenXR">
-     <HintPath>D:\Student Projects\MED8_balazsivanyi\embodied_interaction_miniproject\Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.XR.OpenXR.Editor">
-     <HintPath>D:\Student Projects\MED8_balazsivanyi\embodied_interaction_miniproject\Library\ScriptAssemblies\Unity.XR.OpenXR.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>D:\Student Projects\MED8_balazsivanyi\embodied_interaction_miniproject\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>

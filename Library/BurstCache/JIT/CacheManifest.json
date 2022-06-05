@@ -3,7 +3,7 @@
   "Assemblies": [
     {
       "FullName": "Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-06-04T12:58:51.5532228Z"
+      "LastWriteTime": "2022-06-05T15:29:22.9591846Z"
     },
     {
       "FullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
@@ -19,15 +19,11 @@
     },
     {
       "FullName": "Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-06-04T12:58:52.2952081Z"
-    },
-    {
-      "FullName": "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-      "LastWriteTime": "2022-03-29T12:45:04Z"
+      "LastWriteTime": "2022-06-05T15:29:23.0362548Z"
     },
     {
       "FullName": "Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-06-04T12:58:50.894872Z"
+      "LastWriteTime": "2022-06-05T15:29:22.9282155Z"
     },
     {
       "FullName": "mscorlib, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -66,8 +62,7 @@
         3,
         4,
         2,
-        1,
-        5
+        1
       ]
     },
     {
@@ -79,9 +74,8 @@
         3,
         4,
         2,
-        6,
-        1,
-        5
+        5,
+        1
       ]
     },
     {
@@ -92,10 +86,8 @@
       "AssemblyDependencyIndices": [
         3,
         4,
-        7,
         2,
-        1,
-        5
+        1
       ]
     },
     {
@@ -107,9 +99,8 @@
         3,
         4,
         2,
-        6,
-        1,
-        5
+        5,
+        1
       ]
     },
     {
@@ -120,9 +111,7 @@
       "AssemblyDependencyIndices": [
         3,
         4,
-        2,
-        5,
-        1
+        2
       ]
     },
     {
@@ -135,7 +124,6 @@
         4,
         2,
         1,
-        6,
         5
       ]
     },
@@ -147,10 +135,9 @@
       "AssemblyDependencyIndices": [
         3,
         4,
-        6,
         2,
-        1,
-        5
+        5,
+        1
       ]
     },
     {
@@ -161,10 +148,10 @@
       "AssemblyDependencyIndices": [
         3,
         4,
-        2,
         6,
-        1,
-        5
+        5,
+        2,
+        1
       ]
     },
     {
@@ -177,7 +164,6 @@
         4,
         2,
         1,
-        6,
         5
       ]
     },
@@ -191,7 +177,6 @@
         4,
         2,
         1,
-        6,
         5
       ]
     }

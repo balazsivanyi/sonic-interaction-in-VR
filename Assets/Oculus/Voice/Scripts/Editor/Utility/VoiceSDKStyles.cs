@@ -22,7 +22,6 @@ namespace Oculus.Voice.Utility
         {
             [Header("Setup Texts")]
             public string SetupTitleLabel;
-            public string SetupHeaderLabel;
             public string SetupSubheaderLabel;
             public string SetupLanguageLabel;
             [Header("About Texts")]
@@ -37,9 +36,6 @@ namespace Oculus.Voice.Utility
             public string SettingsTitleLabel;
             [Header("Understanding Viewer Texts")]
             public string UnderstandingViewerTitleLabel;
-            [Header("Built-In Texts")]
-            public string BuiltInAppBtnLabel;
-            public string BuiltInAppUrl;
         }
         public static VoiceSDKTexts Texts;
 

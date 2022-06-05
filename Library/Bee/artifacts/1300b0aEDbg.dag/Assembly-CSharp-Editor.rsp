@@ -437,7 +437,6 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Oculus.Platform.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Oculus.Spatializer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Oculus.Spatializer.ref.dll"
--r:"Library/Bee/artifacts/1300b0aEDbg.dag/Oculus.Voice.Demo.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Oculus.VR.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Oculus.VR.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/Oculus.VR.Scripts.Editor.ref.dll"

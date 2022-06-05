@@ -17,7 +17,8 @@ using Oculus.Interaction.Surfaces;
 
 namespace Oculus.Interaction
 {
-    public class RayInteractor : PointerInteractor<RayInteractor, RayInteractable>
+    public class RayInteractor : Interactor<RayInteractor, RayInteractable>,
+        ICandidatePosition
     {
         [SerializeField, Interface(typeof(ISelector))]
         private MonoBehaviour _selector;
@@ -27,8 +28,6 @@ namespace Oculus.Interaction
 
         [SerializeField]
         private float _maxRayLength = 5f;
-
-        private RayCandidate _rayCandidate = null;
 
         public Vector3 Origin { get; protected set; }
         public Quaternion Rotation { get; protected set; }
@@ -50,6 +49,9 @@ namespace Oculus.Interaction
         public SurfaceHit? CollisionInfo { get; protected set; }
         public Ray Ray { get; protected set; }
 
+        private Vector3 _candidatePosition;
+        public Vector3 CandidatePosition => _candidatePosition;
+
         protected override void Awake()
         {
             base.Awake();
@@ -63,7 +65,7 @@ namespace Oculus.Interaction
             Assert.IsNotNull(_rayOrigin);
         }
 
-        protected override void DoPreprocess()
+        protected override void DoEveryUpdate()
         {
             Origin = _rayOrigin.transform.position;
             Rotation = _rayOrigin.transform.rotation;
@@ -71,26 +73,12 @@ namespace Oculus.Interaction
             Ray = new Ray(Origin, Forward);
         }
 
-        public class RayCandidate : ICandidatePosition
-        {
-            public RayInteractable ClosestInteractable { get; }
-            public Vector3 CandidatePosition { get; }
-            public RayCandidate(RayInteractable closestInteractable, Vector3 candidatePosition)
-            {
-                ClosestInteractable = closestInteractable;
-                CandidatePosition = candidatePosition;
-            }
-        }
-
-        public override object Candidate => _rayCandidate;
-
         protected override RayInteractable ComputeCandidate()
         {
             CollisionInfo = null;
 
             RayInteractable closestInteractable = null;
             float closestDist = float.MaxValue;
-            Vector3 candidatePosition = Vector3.zero;
             IEnumerable<RayInteractable> interactables = RayInteractable.Registry.List(this);
 
             foreach (RayInteractable interactable in interactables)
@@ -102,7 +90,7 @@ namespace Oculus.Interaction
                         closestDist = hit.Distance;
                         closestInteractable = interactable;
                         CollisionInfo = hit;
-                        candidatePosition = hit.Point;
+                        _candidatePosition = hit.Point;
                     }
                 }
             }
@@ -110,14 +98,11 @@ namespace Oculus.Interaction
             float rayDist = (closestInteractable != null ? closestDist : MaxRayLength);
             End = Origin + rayDist * Forward;
 
-            _rayCandidate = new RayCandidate(closestInteractable, candidatePosition);
-
             return closestInteractable;
         }
 
-        protected override void DoSelectUpdate()
+        protected override void DoSelectUpdate(RayInteractable interactable)
         {
-            RayInteractable interactable = _selectedInteractable;
             CollisionInfo = null;
 
             if (interactable != null &&
@@ -130,17 +115,6 @@ namespace Oculus.Interaction
             {
                 End = Origin + MaxRayLength * Forward;
             }
-        }
-
-        protected override Pose ComputePointerPose()
-        {
-            if (CollisionInfo != null)
-            {
-                Vector3 position = CollisionInfo.Value.Point;
-                Quaternion rotation = Quaternion.LookRotation(CollisionInfo.Value.Normal);
-                return new Pose(position, rotation);
-            }
-            return new Pose(Vector3.zero, Quaternion.identity);
         }
 
         #region Inject

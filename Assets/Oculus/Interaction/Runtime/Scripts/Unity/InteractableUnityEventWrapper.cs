@@ -129,7 +129,8 @@ namespace Oculus.Interaction
 
         #region Inject
 
-        public void InjectAllInteractableUnityEventWrapper(IInteractableView interactableView)
+        public void InjectAllInteractableUnityEventWrapper(
+            IInteractableView<IInteractorView> interactableView)
         {
             InjectInteractableView(interactableView);
         }

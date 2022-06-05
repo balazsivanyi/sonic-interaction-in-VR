@@ -427,9 +427,9 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
-"Library/PackageCache/com.unity.xr.oculus@3.0.1/Editor/OculusBuildProcessor.cs"
-"Library/PackageCache/com.unity.xr.oculus@3.0.1/Editor/OculusMetadata.cs"
-"Library/PackageCache/com.unity.xr.oculus@3.0.1/Editor/OculusSettingsEditor.cs"
+"Library/PackageCache/com.unity.xr.oculus@3.0.0/Editor/OculusBuildProcessor.cs"
+"Library/PackageCache/com.unity.xr.oculus@3.0.0/Editor/OculusMetadata.cs"
+"Library/PackageCache/com.unity.xr.oculus@3.0.0/Editor/OculusSettingsEditor.cs"
 -langversion:9.0
 
 /deterministic

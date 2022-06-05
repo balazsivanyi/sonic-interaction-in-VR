@@ -42,33 +42,30 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\SceneLoader.cs" />
-     <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\CarouselView.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\PoseUseSample.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\ShouldHideHandOnGrab.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\CountdownTimer.cs" />
-     <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\ColorChanger.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\RotationAudioEvents.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\EnableTargetOnStart.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\StayInView.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\ScaleModifier.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\ScaleAudioEvents.cs" />
-     <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\LookAtTarget.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\FadeTextAfterActive.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\RespawnOnDrop.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\AudioTrigger.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\AudioPhysics.cs" />
      <Compile Include="Assets\Oculus\Interaction\Samples\Scripts\HideHandVisualOnGrab.cs" />
-     <None Include="Assets\Oculus\Interaction\Samples\Shaders\SkyboxGradient.shader" />
      <None Include="Assets\Oculus\Interaction\Samples\ThirdParty\Textures\EnvironmentMaps\license.txt" />
      <None Include="Assets\Oculus\Interaction\Samples\Shaders\StencilSky.shader" />
      <None Include="Assets\Oculus\Interaction\Samples\Shaders\UIStyleShader.shader" />
+     <None Include="Assets\Oculus\Interaction\Samples\ThirdParty\GradientSkybox\LICENSE.txt" />
+     <None Include="Assets\Oculus\Interaction\Samples\ThirdParty\GradientSkybox\ThreeColorGradient.shader" />
      <None Include="Assets\Oculus\Interaction\Samples\Shaders\MRDeskShadow.shader" />
      <None Include="Assets\Oculus\Interaction\Samples\ThirdParty\Textures\ComprehensiveGrabMapTextureCredit.txt" />
      <None Include="Assets\Oculus\Interaction\Samples\Shaders\room.shader" />
      <None Include="Assets\Oculus\Interaction\Samples\Shaders\StencilWriter.shader" />
      <None Include="Assets\Oculus\Interaction\Samples\Oculus.Interaction.Samples.asmdef" />
      <None Include="Assets\Oculus\Interaction\Samples\Shaders\floor.shader" />
-     <None Include="Assets\Oculus\Interaction\Samples\Shaders\InteractionCG.cginc" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

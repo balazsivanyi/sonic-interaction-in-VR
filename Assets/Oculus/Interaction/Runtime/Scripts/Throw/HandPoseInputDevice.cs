@@ -134,7 +134,7 @@ namespace Oculus.Interaction.Throw
 
         public bool GetRootPose(out Pose pose)
         {
-            pose = Pose.identity;
+            pose = new Pose();
             if (!IsInputValid)
             {
                 return false;
@@ -146,7 +146,7 @@ namespace Oculus.Interaction.Throw
                 return false;
             }
 
-            Pose palmOffset = Pose.identity;
+            Pose palmOffset = new Pose();
             if (!Hand.GetPalmPoseLocal(out palmOffset))
             {
                 return false;
@@ -219,7 +219,7 @@ namespace Oculus.Interaction.Throw
 
         private bool GetJointPose(HandJointId handJointId, out Pose pose)
         {
-            pose = Pose.identity;
+            pose = new Pose();
             if (!Hand.IsTrackedDataValid)
             {
                 return false;

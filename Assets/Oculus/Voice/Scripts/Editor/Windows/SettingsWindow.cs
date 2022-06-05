@@ -26,6 +26,7 @@ namespace Oculus.Voice.Windows
 
         protected override void OnEnable()
         {
+            WitAuthUtility.InitEditorTokens();
             WitAuthUtility.tokenValidator = new VoiceSDKTokenValidatorProvider();
             base.OnEnable();
         }

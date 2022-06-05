@@ -36,16 +36,24 @@ Shader "Oculus/Interaction/Stencil Sky"
               // has to be this high because the stencil buffer writer needs to be 2501 in order to
               // sort back to front
 
-			Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+502"}
+			Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+502" }
 			LOD 100
 
 			CGINCLUDE
 			#pragma target 3.0
 			ENDCG
+			Blend Off
+			AlphaToMask Off
+			Cull Back
+			ColorMask RGBA
+			ZWrite On
+			ZTest LEqual
+			Offset 0 , 0
 
 			Pass
 			{
 				Name "Base"
+				Tags { "LightMode" = "ForwardBase" }
 				CGPROGRAM
 
 				#ifndef UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX
@@ -58,16 +66,15 @@ Shader "Oculus/Interaction/Stencil Sky"
 
 				#include "UnityCG.cginc"
 				#include "UnityShaderVariables.cginc"
-				#include "InteractionCG.cginc"
 
-				struct VertexInput
+				struct vertexInput
 				{
 					float4 vertex : POSITION;
 					half2 texcoord : TEXCOORD0;
 					UNITY_VERTEX_INPUT_INSTANCE_ID
 				};
 
-				struct VertexOutput
+				struct vertexOutput
 				{
 					float4 vertex : SV_POSITION;
 					half2 texcoord : TEXCOORD1;
@@ -75,14 +82,19 @@ Shader "Oculus/Interaction/Stencil Sky"
 					UNITY_VERTEX_OUTPUT_STEREO
 				};
 
+
 				uniform sampler2D _MainTex;
 				uniform half4 _MainTex_ST;
 				uniform half4 _ColorLight;
                 uniform half4 _ColorDark;
+                half _DitherStrength;
 
-				VertexOutput vert(VertexInput v)
+
+
+
+				vertexOutput vert(vertexInput v)
 				{
-					VertexOutput o;
+					vertexOutput o;
 					UNITY_SETUP_INSTANCE_ID(v);
 					UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 					UNITY_TRANSFER_INSTANCE_ID(v, o);
@@ -92,14 +104,21 @@ Shader "Oculus/Interaction/Stencil Sky"
 					return o;
 				}
 
-				half4 frag(VertexOutput i) : SV_Target
+				inline half DitherAnimatedNoise(half2 screenPos) {
+					half noise = frac(
+						dot(uint3(screenPos, floor(fmod(_Time.y * 10, 4))), uint3(2, 7, 23) / 17.0f));
+					noise -= 0.5; // remap from [0..1[ to [-0.5..0.5[
+                    half noiseScaled = (noise / _DitherStrength);
+					return noiseScaled;
+                }
+
+				fixed4 frag(vertexOutput i) : SV_Target
 				{
 					UNITY_SETUP_INSTANCE_ID(i);
 					UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                     half ditherNoise = DitherAnimatedNoise(i.vertex.xy);
 					half4 mainTexture = tex2D(_MainTex, i.texcoord.xy);
 					half4 finalColor = lerp(_ColorDark, _ColorLight, mainTexture.r  + ditherNoise);
-					UNITY_OPAQUE_ALPHA(finalColor.a);
                     return finalColor;
 				}
 				ENDCG

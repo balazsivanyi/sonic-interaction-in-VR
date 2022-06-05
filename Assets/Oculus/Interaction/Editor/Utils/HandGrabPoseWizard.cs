@@ -83,7 +83,7 @@ namespace Oculus.Interaction.HandPosing.Editor
         {
             if (_ghostProvider == null)
             {
-                HandGhostProviderUtils.TryGetDefaultProvider(out _ghostProvider);
+                HandGhostProvider.TryGetDefault(out _ghostProvider);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Oculus.Interaction.HandPosing.Editor
         {
             if (_handGrabInteractor == null)
             {
-                //TODO unity might lose this reference (But still present it in the inspector)
+                //TODO unity might lose this reference (But still present it in the inspector) 
                 //during Play-Edit mode changes
                 _handGrabInteractor = null;
             }
@@ -211,7 +211,7 @@ namespace Oculus.Interaction.HandPosing.Editor
         /// <summary>
         /// Stores the interactables to a SerializedObject (the empty object must be
         /// provided in the inspector or one will be auto-generated). First it translates the HandGrabInteractable to a serialized
-        /// form HandGrabbableData).
+        /// form HandGrabInteractableData).
         /// This method is called from a button in the Inspector.
         /// </summary>
         private void SaveToAsset()

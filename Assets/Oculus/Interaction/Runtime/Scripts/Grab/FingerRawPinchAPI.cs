@@ -98,7 +98,7 @@ namespace Oculus.Interaction.GrabAPI
                    _fingersPinchData[(int)finger].IsPinching == targetPinchState;
         }
 
-        public float GetFingerGrabScore(HandFinger finger)
+        public float GetFingerGrabStrength(HandFinger finger)
         {
             return _fingersPinchData[(int)finger].PinchStrength;
         }

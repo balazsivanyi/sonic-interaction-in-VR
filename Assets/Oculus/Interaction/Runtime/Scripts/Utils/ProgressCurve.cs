@@ -57,7 +57,7 @@ namespace Oculus.Interaction
 
         public void Start()
         {
-            _animationStartTime = Time.time;
+            _animationStartTime = Time.realtimeSinceStartup;
         }
 
         public float Progress()
@@ -84,12 +84,12 @@ namespace Oculus.Interaction
 
         public float ProgressTime()
         {
-            return Mathf.Clamp(Time.time - _animationStartTime, 0f, _animationLength);
+            return Mathf.Min(Mathf.Max(0f, Time.realtimeSinceStartup - _animationStartTime), _animationLength);
         }
 
         public void End()
         {
-            _animationStartTime = Time.time - _animationLength;
+            _animationStartTime = Time.realtimeSinceStartup - _animationLength;
         }
     }
 }

@@ -12,7 +12,6 @@ using UnityEngine;
 
 namespace Facebook.WitAi.CallbackHandlers
 {
-    [AddComponentMenu("Wit.ai/Response Matchers/Utterance Matcher")]
     public class WitUtteranceMatcher : WitResponseHandler
     {
         [SerializeField] private string searchText;

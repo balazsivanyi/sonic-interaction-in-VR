@@ -28,11 +28,11 @@ namespace Facebook.WitAi.Windows
                     }
                     break;
                 case "id":
-                    return WitTexts.Texts.ConfigurationTraitsIdLabel;
+                    return WitStyles.Texts.ConfigurationTraitsIdLabel;
                 case "values":
-                    return WitTexts.Texts.ConfigurationTraitsValuesLabel;
+                    return WitStyles.Texts.ConfigurationTraitsValuesLabel;
             }
-
+            
             // Default to base
             return base.GetLocalizedText(property, key);
         }

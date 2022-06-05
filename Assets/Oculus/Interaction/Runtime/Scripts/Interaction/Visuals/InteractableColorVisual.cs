@@ -82,7 +82,6 @@ namespace Oculus.Interaction
         {
             if (_started)
             {
-                UpdateVisual();
                 InteractableView.WhenStateChanged += UpdateVisualState;
             }
         }

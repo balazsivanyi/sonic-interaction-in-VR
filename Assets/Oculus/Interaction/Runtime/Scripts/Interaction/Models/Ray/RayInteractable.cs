@@ -10,13 +10,14 @@ ANY KIND, either express or implied. See the License for the specific language g
 permissions and limitations under the License.
 ************************************************************************************/
 
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Oculus.Interaction.Surfaces;
 
 namespace Oculus.Interaction
 {
-    public class RayInteractable : PointerInteractable<RayInteractor, RayInteractable>
+    public class RayInteractable : Interactable<RayInteractor, RayInteractable>, IPointable
     {
         [SerializeField]
         private Collider _collider;
@@ -27,17 +28,45 @@ namespace Oculus.Interaction
 
         private IPointableSurface Surface;
 
-        protected override void Awake()
+        public event Action<PointerArgs> OnPointerEvent = delegate { };
+        private PointableDelegate<RayInteractor> _pointableDelegate;
+
+        protected bool _started = false;
+
+        protected virtual void Awake()
         {
-            base.Awake();
             Surface = _surface as IPointableSurface;
         }
 
-        protected override void Start()
+        protected virtual void Start()
         {
-            this.BeginStart(ref _started, base.Start);
+            this.BeginStart(ref _started);
             Assert.IsNotNull(_collider);
+            _pointableDelegate = new PointableDelegate<RayInteractor>(this, ComputePointer);
             this.EndStart(ref _started);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (_started)
+            {
+                _pointableDelegate.OnPointerEvent += InvokePointerEvent;
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            if (_started)
+            {
+                _pointableDelegate.OnPointerEvent -= InvokePointerEvent;
+            }
+            base.OnDisable();
+        }
+
+        private void InvokePointerEvent(PointerArgs args)
+        {
+            OnPointerEvent(args);
         }
 
         public bool Raycast(Ray ray, out SurfaceHit hit, in float maxDistance, in bool useSurface)
@@ -55,6 +84,26 @@ namespace Oculus.Interaction
                 return Surface.Raycast(ray, out hit, maxDistance);
             }
             return false;
+        }
+
+        private void ComputePointer(RayInteractor rayInteractor, out Vector3 position, out Quaternion rotation)
+        {
+            if (rayInteractor.CollisionInfo != null)
+            {
+                position = rayInteractor.CollisionInfo.Value.Point;
+                rotation = Quaternion.LookRotation(rayInteractor.CollisionInfo.Value.Normal);
+                return;
+            }
+            else
+            {
+                position = Vector3.zero;
+                rotation = rayInteractor.Rotation;
+            }
+        }
+
+        protected virtual void OnDestroy()
+        {
+            _pointableDelegate = null;
         }
 
         #region Inject

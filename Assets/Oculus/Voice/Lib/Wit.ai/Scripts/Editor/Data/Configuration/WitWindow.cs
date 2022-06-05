@@ -15,8 +15,7 @@ namespace Facebook.WitAi.Windows
     {
         protected WitConfigurationEditor witInspector;
         protected string serverToken;
-        protected override GUIContent Title => WitTexts.SettingsTitleContent;
-        protected override string HeaderUrl => witInspector ? witInspector.HeaderUrl : base.HeaderUrl;
+        protected override GUIContent Title => WitStyles.SettingsTitleContent;
 
         protected override void OnEnable()
         {
@@ -43,16 +42,12 @@ namespace Facebook.WitAi.Windows
             // Server access token
             GUILayout.BeginHorizontal();
             bool updated = false;
-            WitEditorUI.LayoutPasswordField(WitTexts.SettingsServerTokenContent, ref serverToken, ref updated);
-            if (updated)
+            WitEditorUI.LayoutPasswordField(WitStyles.SettingsServerTokenContent, ref serverToken, ref updated);
+            if (WitEditorUI.LayoutTextButton(WitStyles.Texts.SettingsRelinkButtonLabel))
             {
-                RelinkServerToken(false);
+                ApplyServerToken();
             }
-            if (WitEditorUI.LayoutTextButton(WitTexts.Texts.SettingsRelinkButtonLabel))
-            {
-                RelinkServerToken(true);
-            }
-            if (WitEditorUI.LayoutTextButton(WitTexts.Texts.SettingsAddButtonLabel))
+            if (WitEditorUI.LayoutTextButton(WitStyles.Texts.SettingsAddButtonLabel))
             {
                 int newIndex = WitConfigurationUtility.CreateConfiguration(serverToken);
                 if (newIndex != -1)
@@ -78,31 +73,22 @@ namespace Facebook.WitAi.Windows
             }
         }
         // Apply server token
-        private void RelinkServerToken(bool closeIfInvalid)
+        private void ApplyServerToken()
         {
             // Open Setup if Invalid
-            bool invalid = !WitConfigurationUtility.IsServerTokenValid(serverToken);
-            if (invalid)
+            if (!WitConfigurationUtility.IsServerTokenValid(serverToken))
             {
-                // Clear if desired
-                if (string.IsNullOrEmpty(serverToken))
-                {
-                    WitAuthUtility.ServerToken = serverToken;
-                }
-                // Close if desired
-                if (closeIfInvalid)
-                {
-                    // Open Setup
-                    WitWindowUtility.OpenSetupWindow(WitWindowUtility.OpenConfigurationWindow);
-                    // Close this Window
-                    Close();
-                }
+                // Open Setup
+                WitWindowUtility.OpenSetupWindow(WitWindowUtility.OpenConfigurationWindow);
+                // Close this Window
+                Close();
                 return;
             }
-
-            // Set valid server token
-            WitAuthUtility.ServerToken = serverToken;
-            WitConfigurationUtility.SetServerToken(serverToken);
+            // Set server token
+            WitConfigurationUtility.SetServerToken(serverToken, (e) =>
+            {
+                serverToken = WitAuthUtility.ServerToken;
+            });
         }
     }
 }

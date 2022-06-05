@@ -58,7 +58,7 @@ namespace Oculus.Interaction
         {
             if (_started)
             {
-                _grabbable.WhenPointerEventRaised += HandlePointerEventRaised;
+                _grabbable.WhenGrabbableUpdated += HandleGrabbableUpdated;
             }
         }
 
@@ -66,23 +66,23 @@ namespace Oculus.Interaction
         {
             if (_started)
             {
-                _grabbable.WhenPointerEventRaised -= HandlePointerEventRaised;
+                _grabbable.WhenGrabbableUpdated -= HandleGrabbableUpdated;
             }
         }
 
-        private void HandlePointerEventRaised(PointerArgs args)
+        private void HandleGrabbableUpdated(GrabbableArgs args)
         {
-            switch (args.PointerEvent)
+            switch (args.GrabbableEvent)
             {
-                case PointerEvent.Select:
-                    if (_grabbable.SelectingPointsCount == 1 && !_isBeingTransformed)
+                case GrabbableEvent.Add:
+                    if (_grabbable.GrabPointsCount == 1 && !_isBeingTransformed)
                     {
                         DisablePhysics();
                     }
 
                     break;
-                case PointerEvent.Unselect:
-                    if (_grabbable.SelectingPointsCount == 0)
+                case GrabbableEvent.Remove:
+                    if (_grabbable.GrabPointsCount == 0)
                     {
                         ReenablePhysics();
                     }

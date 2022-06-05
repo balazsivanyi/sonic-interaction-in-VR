@@ -122,7 +122,7 @@ namespace Oculus.Interaction.PoseDetection
         public void UpdateFeatureStates(int lastUpdatedFrameId,
             bool disableProactiveEvaluation)
         {
-            foreach (var transformStateInfo in _idToTransformStateInfo.Values)
+            foreach(var transformStateInfo in _idToTransformStateInfo.Values)
             {
                 var featureStateProvider = transformStateInfo.StateProvider;
                 if (!disableProactiveEvaluation)
@@ -167,23 +167,25 @@ namespace Oculus.Interaction.PoseDetection
 
         private TransformJointData _jointData = new TransformJointData();
         private TransformFeatureStateCollection _transformFeatureStateCollection;
-        private Func<float> _timeProvider;
+
+        Func<float> _timeProvider;
 
         protected bool _started = false;
 
         protected virtual void Awake()
         {
             Hand = _hand as IHand;
-            TrackingToWorldTransformer = _trackingToWorldTransformer as ITrackingToWorldTransformer;
             _transformFeatureStateCollection = new TransformFeatureStateCollection();
-            _timeProvider = () => Time.time;
+
+            if (_timeProvider == null)
+            {
+                _timeProvider = () => Time.time;
+            }
         }
 
         public void RegisterNewConfig(TransformConfig transformConfig)
         {
-            //Register time provider indirectly in case reference changes
-            Func<float> getTime = () => _timeProvider();
-            _transformFeatureStateCollection.RegisterConfig(transformConfig, _jointData, getTime);
+            _transformFeatureStateCollection.RegisterConfig(transformConfig, _jointData, _timeProvider);
         }
 
         public void UnRegisterConfig(TransformConfig transformConfig)
@@ -195,7 +197,8 @@ namespace Oculus.Interaction.PoseDetection
         {
             this.BeginStart(ref _started);
             Assert.IsNotNull(Hand);
-            Assert.IsNotNull(_timeProvider);
+
+            TrackingToWorldTransformer = _trackingToWorldTransformer as ITrackingToWorldTransformer;
             Assert.IsNotNull(TrackingToWorldTransformer);
             this.EndStart(ref _started);
         }

@@ -22,9 +22,6 @@ namespace Oculus.Interaction.Input
         [SerializeField, Interface(typeof(IOVRCameraRigRef))]
         private MonoBehaviour _cameraRigRef;
 
-        [SerializeField]
-        private bool _processLateUpdates = false;
-
         [Header("Shared Configuration")]
         [SerializeField]
         private Handedness _handedness;
@@ -40,18 +37,6 @@ namespace Oculus.Interaction.Input
         [SerializeField, Interface(typeof(IDataSource<HmdDataAsset>))]
         private MonoBehaviour _hmdData;
         private IDataSource<HmdDataAsset> HmdData;
-
-        public bool ProcessLateUpdates
-        {
-            get
-            {
-                return _processLateUpdates;
-            }
-            set
-            {
-                _processLateUpdates = value;
-            }
-        }
 
         private readonly HandDataAsset _handDataAsset = new HandDataAsset();
         private OVRHand _ovrHand;
@@ -79,7 +64,7 @@ namespace Oculus.Interaction.Input
 
         protected override void Start()
         {
-            this.BeginStart(ref _started, base.Start);
+            base.Start();
             Assert.IsNotNull(CameraRigRef);
             Assert.IsNotNull(TrackingToWorldTransformer);
             Assert.IsNotNull(HandSkeletonProvider);
@@ -96,38 +81,7 @@ namespace Oculus.Interaction.Input
             }
 
             UpdateConfig();
-
-            this.EndStart(ref _started);
         }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            if (_started)
-            {
-                CameraRigRef.WhenInputDataDirtied += HandleInputDataDirtied;
-            }
-        }
-
-        protected override void OnDisable()
-        {
-            if (_started)
-            {
-                CameraRigRef.WhenInputDataDirtied -= HandleInputDataDirtied;
-            }
-
-            base.OnDisable();
-        }
-
-        private void HandleInputDataDirtied(bool isLateUpdate)
-        {
-            if (isLateUpdate && !_processLateUpdates)
-            {
-                return;
-            }
-            MarkInputDataRequiresUpdate();
-        }
-
 
         private HandDataSourceConfig Config
         {

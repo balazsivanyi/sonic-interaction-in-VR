@@ -12,7 +12,9 @@ permissions and limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Oculus.Interaction
 {
@@ -22,14 +24,14 @@ namespace Oculus.Interaction
     /// Concrete Interactables can define whether they have a One-to-One or
     /// One-to-Many relationship with their associated concrete Interactors.
     /// </summary>
-    public abstract class Interactable<TInteractor, TInteractable> : MonoBehaviour, IInteractable
-                                        where TInteractor : Interactor<TInteractor, TInteractable>
+    public abstract class Interactable<TInteractor, TInteractable> : MonoBehaviour, IInteractable<TInteractor>
+                                        where TInteractor : class, IInteractor<TInteractable>
                                         where TInteractable : Interactable<TInteractor, TInteractable>
     {
         /// <summary>
-        /// The max Interactors and max selecting Interactors that this Interactable can
+        /// The max interactors and max selecting Interactors that this Interactable can
         /// have acting on it.
-        /// -1 signifies NO limit (can have any number of Interactors)
+        /// -1 signifies NO limit (can have infinite interactors)
         /// </summary>
         [SerializeField]
         private int _maxInteractors = -1;
@@ -37,7 +39,6 @@ namespace Oculus.Interaction
         [SerializeField]
         private int _maxSelectingInteractors = -1;
 
-        #region Properties
         public int MaxInteractors
         {
             get
@@ -61,7 +62,6 @@ namespace Oculus.Interaction
                 _maxSelectingInteractors = value;
             }
         }
-        #endregion
 
         private HashSet<TInteractor> _interactors = new HashSet<TInteractor>();
         private HashSet<TInteractor> _selectingInteractors = new HashSet<TInteractor>();
@@ -100,10 +100,10 @@ namespace Oculus.Interaction
             }
         }
 
-        private static InteractableRegistry<TInteractor, TInteractable> _registry =
+        private static IInteractableRegistry<TInteractor, TInteractable> _registry =
                                         new InteractableRegistry<TInteractor, TInteractable>();
 
-        public static InteractableRegistry<TInteractor, TInteractable> Registry => _registry;
+        public static IInteractableRegistry<TInteractor, TInteractable> Registry => _registry;
 
         protected virtual void InteractorAdded(TInteractor interactor)
         {
@@ -145,7 +145,6 @@ namespace Oculus.Interaction
             {
                 return;
             }
-            interactor.InteractableChangesUpdate();
             WhenInteractorsCountUpdated();
             InteractorRemoved(interactor);
             UpdateInteractableState();
@@ -165,7 +164,6 @@ namespace Oculus.Interaction
             {
                 return;
             }
-            interactor.InteractableChangesUpdate();
             WhenSelectingInteractorsCountUpdated();
             SelectingInteractorRemoved(interactor);
             UpdateInteractableState();
@@ -174,7 +172,6 @@ namespace Oculus.Interaction
         private void UpdateInteractableState()
         {
             if (State == InteractableState.Disabled) return;
-
             if (SelectingInteractorsCount > 0)
             {
                 State = InteractableState.Select;
@@ -224,20 +221,14 @@ namespace Oculus.Interaction
 
         public void Enable()
         {
-            if (State != InteractableState.Disabled)
-            {
-                return;
-            }
+            if (State != InteractableState.Disabled) return;
             _registry.Register((TInteractable)this);
             State = InteractableState.Normal;
         }
 
         public void Disable()
         {
-            if (State == InteractableState.Disabled)
-            {
-                return;
-            }
+            if (State == InteractableState.Disabled) return;
 
             List<TInteractor> selectingInteractorsCopy = new List<TInteractor>(_selectingInteractors);
             foreach (TInteractor selectingInteractor in selectingInteractorsCopy)
@@ -257,6 +248,11 @@ namespace Oculus.Interaction
 
         public void RemoveInteractorById(int id)
         {
+            if (State != InteractableState.Select)
+            {
+                return;
+            }
+
             TInteractor foundInteractor = null;
             foreach (TInteractor selectingInteractor in _selectingInteractors)
             {
@@ -267,13 +263,14 @@ namespace Oculus.Interaction
                 }
             }
 
-            if (foundInteractor != null)
+            if (foundInteractor == null)
             {
-                RemoveSelectingInteractor(foundInteractor);
+                return;
             }
 
-            foundInteractor = null;
+            RemoveSelectingInteractor(foundInteractor);
 
+            foundInteractor = null;
             foreach (TInteractor interactor in _interactors)
             {
                 if (interactor.Identifier == id)
@@ -301,7 +298,7 @@ namespace Oculus.Interaction
             Disable();
         }
 
-        protected virtual void SetRegistry(InteractableRegistry<TInteractor, TInteractable> registry)
+        protected virtual void SetRegistry(IInteractableRegistry<TInteractor, TInteractable> registry)
         {
             if (registry == _registry) return;
 

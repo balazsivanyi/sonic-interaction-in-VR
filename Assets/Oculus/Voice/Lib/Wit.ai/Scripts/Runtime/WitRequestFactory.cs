@@ -48,9 +48,7 @@ namespace Facebook.WitAi
             }
 
             var path = WitEndpointConfig.GetEndpointConfig(config).Message;
-            WitRequest request = new WitRequest(config, path, queryParams.ToArray());
-            request.onResponse = requestOptions.onResponse;
-            return request;
+            return new WitRequest(config, path, queryParams.ToArray());
         }
 
         /// <summary>
@@ -78,9 +76,7 @@ namespace Facebook.WitAi
             }
 
             var path = WitEndpointConfig.GetEndpointConfig(config).Speech;
-            WitRequest request = new WitRequest(config, path, queryParams.ToArray());
-            request.onResponse = requestOptions.onResponse;
-            return request;
+            return new WitRequest(config, path, queryParams.ToArray());
         }
 
         #region IDE Only Requests

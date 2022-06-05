@@ -19,9 +19,9 @@ namespace Oculus.Interaction
 {
     public class GrabStrengthIndicator : MonoBehaviour
     {
-        [SerializeField, Interface(typeof(IHandGrabber), typeof(IInteractor))]
+        [SerializeField, Interface(typeof(IHandGrabInteractor), typeof(IInteractor))]
         private MonoBehaviour _handGrabInteractor;
-        private IHandGrabber HandGrab { get; set; }
+        private IHandGrabInteractor HandGrab { get; set; }
         private IInteractor Interactor { get; set; }
 
         [SerializeField]
@@ -105,7 +105,7 @@ namespace Oculus.Interaction
 
         private void Awake()
         {
-            HandGrab = _handGrabInteractor as IHandGrabber;
+            HandGrab = _handGrabInteractor as IHandGrabInteractor;
             Interactor = _handGrabInteractor as IInteractor;
         }
 
@@ -124,7 +124,7 @@ namespace Oculus.Interaction
         {
             if (_started)
             {
-                Interactor.WhenPostprocessed += UpdateVisual;
+                Interactor.WhenInteractorUpdated += UpdateVisual;
                 _currentGlowColor = _fingerGlowColorWithNoInteractable;
             }
         }
@@ -133,7 +133,7 @@ namespace Oculus.Interaction
         {
             if (_started)
             {
-                Interactor.WhenPostprocessed -= UpdateVisual;
+                Interactor.WhenInteractorUpdated -= UpdateVisual;
             }
         }
 
@@ -193,7 +193,7 @@ namespace Oculus.Interaction
 
         #region Inject
 
-        public void InjectAllGrabStrengthIndicator(IHandGrabber handGrab, IInteractor interactor,
+        public void InjectAllGrabStrengthIndicator(IHandGrabInteractor handGrab, IInteractor interactor,
             MaterialPropertyBlockEditor handMaterialPropertyBlockEditor)
         {
             InjectHandGrab(handGrab);
@@ -201,7 +201,7 @@ namespace Oculus.Interaction
             InjectHandMaterialPropertyBlockEditor(handMaterialPropertyBlockEditor);
         }
 
-        public void InjectHandGrab(IHandGrabber handGrab)
+        public void InjectHandGrab(IHandGrabInteractor handGrab)
         {
             HandGrab = handGrab;
         }

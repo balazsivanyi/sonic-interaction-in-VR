@@ -15,28 +15,34 @@ Shader "Oculus/Interaction/floor"
 		Properties
 		{
 			_MainTex("MainTex", 2D) = "white" {}
-			_ColorLight("Light Color", Color) = (1, 1, 1, 1)
-			_ColorDark("Dark Color", Color) = (0, 0, 0, 1)
-			_DetailTex("Detail Texture", 2D) = "white" {}
+			_ColorLight("Light Color", Color) = (0,0,0,0)
+			_ColorDark("Dark Color", Color) = (0, 0, 0, 0)_DetailTex("Detail Texture", 2D) = "white" {}
             _DetailTexIntensity("Detail Texture Intensity", Range(0, 1)) = 1
 			_DitherStrength("Dither Strength", int) = 16
 
 			[HideInInspector] _texcoord("", 2D) = "white" {}
 		}
 
-		SubShader
+			SubShader
 		{
-			Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent+0"}
+			Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent+0" }
 			LOD 100
 
 			CGINCLUDE
 			#pragma target 3.0
 			ENDCG
 			Blend SrcAlpha OneMinusSrcAlpha
+			AlphaToMask Off
+			Cull Back
+			ColorMask RGBA
+			ZWrite Off
+			ZTest LEqual
+			Offset 0 , 0
 
 			Pass
 			{
 				Name "Base"
+				Tags { "LightMode" = "ForwardBase" }
 				CGPROGRAM
 
 				#ifndef UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX
@@ -49,9 +55,8 @@ Shader "Oculus/Interaction/floor"
 
 				#include "UnityCG.cginc"
 				#include "UnityShaderVariables.cginc"
-				#include "InteractionCG.cginc"
 
-				struct VertexInput
+				struct vertexInput
 				{
 					float4 vertex : POSITION;
 					half2 texcoord : TEXCOORD0;
@@ -59,7 +64,7 @@ Shader "Oculus/Interaction/floor"
 					UNITY_VERTEX_INPUT_INSTANCE_ID
 				};
 
-				struct VertexOutput
+				struct vertexOutput
 				{
 					float4 vertex : SV_POSITION;
 					half2 texcoord : TEXCOORD1;
@@ -68,6 +73,7 @@ Shader "Oculus/Interaction/floor"
 					UNITY_VERTEX_OUTPUT_STEREO
 				};
 
+
 				uniform sampler2D _MainTex;
 				uniform half4 _MainTex_ST;
 				uniform half4 _ColorLight;
@@ -75,10 +81,13 @@ Shader "Oculus/Interaction/floor"
                 uniform sampler2D _DetailTex;
                 uniform half _DetailTexIntensity;
                 uniform half4 _DetailTex_ST;
+                uniform half _DitherStrength;
 
-				VertexOutput vert(VertexInput v)
+
+
+				vertexOutput vert(vertexInput v)
 				{
-					VertexOutput o;
+					vertexOutput o;
 					UNITY_SETUP_INSTANCE_ID(v);
 					UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 					UNITY_TRANSFER_INSTANCE_ID(v, o);
@@ -89,7 +98,15 @@ Shader "Oculus/Interaction/floor"
 					return o;
 				}
 
-				half4 frag(VertexOutput i) : SV_Target
+				inline half DitherAnimatedNoise(half2 screenPos) {
+					half noise = frac(
+						dot(uint3(screenPos, floor(fmod(_Time.y * 10, 4))), uint3(2, 7, 23) / 17.0f));
+					noise -= 0.5; // remap from [0..1[ to [-0.5..0.5[
+                    half noiseScaled = (noise / _DitherStrength);
+					return noiseScaled;
+                }
+
+				fixed4 frag(vertexOutput i) : SV_Target
 				{
 					UNITY_SETUP_INSTANCE_ID(i);
 					UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
@@ -99,11 +116,13 @@ Shader "Oculus/Interaction/floor"
                     detailTexture = saturate(detailTexture + (1 - _DetailTexIntensity));
 					half4 mainTexture = tex2D(_MainTex, i.texcoord.xy);
 					half4 finalColor = lerp(_ColorDark, _ColorLight, (mainTexture.r * detailTexture.r) + ditherNoise);
-					finalColor.a = i.vertexColor.r + ditherNoise;
-                    return finalColor;
+                    return half4(finalColor.rgb, i.vertexColor.r + ditherNoise);
 				}
 				ENDCG
 			}
+
+
+
 
 	}
 }

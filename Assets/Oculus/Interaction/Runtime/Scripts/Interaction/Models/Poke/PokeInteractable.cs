@@ -10,13 +10,14 @@ ANY KIND, either express or implied. See the License for the specific language g
 permissions and limitations under the License.
 ************************************************************************************/
 
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Oculus.Interaction.Surfaces;
 
 namespace Oculus.Interaction
 {
-    public class PokeInteractable : PointerInteractable<PokeInteractor, PokeInteractable>
+    public class PokeInteractable : Interactable<PokeInteractor, PokeInteractable>, IPointable
     {
         [SerializeField, Interface(typeof(IProximityField))]
         private MonoBehaviour _proximityField;
@@ -51,23 +52,47 @@ namespace Oculus.Interaction
         private Collider _volumeMask = null;
         public Collider VolumeMask { get => _volumeMask; }
 
-        protected override void Awake()
+        public event Action<PointerArgs> OnPointerEvent = delegate { };
+        private PointableDelegate<PokeInteractor> _pointableDelegate;
+
+        protected bool _started = false;
+
+        protected virtual void Awake()
         {
-            base.Awake();
             ProximityField = _proximityField as IProximityField;
             Surface = _surface as IPointableSurface;
         }
 
-        protected override void Start()
+        protected virtual void Start()
         {
-            this.BeginStart(ref _started, base.Start);
+            this.BeginStart(ref _started);
             Assert.IsNotNull(ProximityField);
             Assert.IsNotNull(Surface);
             if (_enterHoverDistance > 0f)
             {
                 _enterHoverDistance = Mathf.Min(_enterHoverDistance, _maxDistance);
             }
+            _pointableDelegate = new PointableDelegate<PokeInteractor>(this, ComputePointer);
             this.EndStart(ref _started);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (_started)
+            {
+                _pointableDelegate.OnPointerEvent += InvokePointerEvent;
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            if (_started)
+            {
+                _pointableDelegate.OnPointerEvent -= InvokePointerEvent;
+            }
+
+            base.OnDisable();
         }
 
         public Vector3 ComputeClosestPoint(Vector3 point)
@@ -85,6 +110,22 @@ namespace Oculus.Interaction
         {
             Surface.ClosestSurfacePoint(point, out SurfaceHit hit);
             return hit.Normal;
+        }
+
+        private void ComputePointer(PokeInteractor pokeInteractor, out Vector3 position, out Quaternion rotation)
+        {
+            position = pokeInteractor.TouchPoint;
+            rotation = Quaternion.LookRotation(ClosestSurfaceNormal(position));
+        }
+
+        private void InvokePointerEvent(PointerArgs args)
+        {
+            OnPointerEvent(args);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            _pointableDelegate = null;
         }
 
         #region Inject

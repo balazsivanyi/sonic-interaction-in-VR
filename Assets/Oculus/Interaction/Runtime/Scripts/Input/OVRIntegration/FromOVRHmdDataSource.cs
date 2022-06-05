@@ -27,9 +27,6 @@ namespace Oculus.Interaction.Input
         public IOVRCameraRigRef CameraRigRef { get; private set; }
 
         [SerializeField]
-        private bool _processLateUpdates = false;
-
-        [SerializeField]
         [Tooltip("If true, uses OVRManager.headPoseRelativeOffset rather than sensor data for " +
                  "HMD pose.")]
         private bool _useOvrManagerEmulatedPose = false;
@@ -38,18 +35,6 @@ namespace Oculus.Interaction.Input
         [SerializeField, Interface(typeof(ITrackingToWorldTransformer))]
         private MonoBehaviour _trackingToWorldTransformer;
         private ITrackingToWorldTransformer TrackingToWorldTransformer;
-
-        public bool ProcessLateUpdates
-        {
-            get
-            {
-                return _processLateUpdates;
-            }
-            set
-            {
-                _processLateUpdates = value;
-            }
-        }
 
         private HmdDataAsset _hmdDataAsset = new HmdDataAsset();
         private HmdDataSourceConfig _config;
@@ -62,38 +47,9 @@ namespace Oculus.Interaction.Input
 
         protected override void Start()
         {
-            this.BeginStart(ref _started, base.Start);
+            base.Start();
             Assert.IsNotNull(CameraRigRef);
             Assert.IsNotNull(TrackingToWorldTransformer);
-            this.EndStart(ref _started);
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            if (_started)
-            {
-                CameraRigRef.WhenInputDataDirtied += HandleInputDataDirtied;
-            }
-        }
-
-        protected override void OnDisable()
-        {
-            if (_started)
-            {
-                CameraRigRef.WhenInputDataDirtied -= HandleInputDataDirtied;
-            }
-
-            base.OnDisable();
-        }
-
-        private void HandleInputDataDirtied(bool isLateUpdate)
-        {
-            if (isLateUpdate && !_processLateUpdates)
-            {
-                return;
-            }
-            MarkInputDataRequiresUpdate();
         }
 
         private HmdDataSourceConfig Config
@@ -131,7 +87,7 @@ namespace Oculus.Interaction.Input
             }
             else
             {
-                var previousEyePose = Pose.identity;
+                var previousEyePose = new Pose();
 
                 if (_hmdDataAsset.IsTracked)
                 {

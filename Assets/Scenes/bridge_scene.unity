@@ -153,7 +153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13494271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0294, y: -2.5613, z: -37.129}
+  m_LocalPosition: {x: 0.0294, y: -2.5613, z: -37.051}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -363,8 +363,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -614,6 +614,7 @@ GameObject:
   - component: {fileID: 192273508}
   - component: {fileID: 192273510}
   - component: {fileID: 192273509}
+  - component: {fileID: 192273511}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -707,14 +708,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192273501}
   serializedVersion: 2
-  m_Mass: 50
+  m_Mass: 10
   m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 0
 --- !u!114 &192273509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,7 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oneGrabTransformer: {fileID: 0}
+  _oneGrabTransformer: {fileID: 192273511}
   _twoGrabTransformer: {fileID: 0}
   _transferHandOnSecondGrab: 0
   _addNewGrabsToFront: 0
@@ -797,6 +798,20 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _handGrabPoints: []
+--- !u!114 &192273511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192273501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94900559e72f2654ca112bf2fbc6f0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customJoint: {fileID: 0}
+  _isKinematicGrab: 1
 --- !u!4 &271861712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4319936315435910, guid: c6a74181d4000004887343fb87b3c53a,
@@ -942,8 +957,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -1483,8 +1498,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -2021,8 +2036,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -2677,22 +2692,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1236081655}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1240745497
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240745493}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!64 &1240745498
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2804,8 +2803,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -3215,8 +3214,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -3342,181 +3341,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 833363204}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1655639443
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.811
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.478
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -36.361
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467674335625483521, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_Name
-      value: Grab Interactable
-      objectReference: {fileID: 0}
-    - target: {fileID: 5495533680320938416, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7566337167608646695, guid: 33e1871b7f3bf4daea09c1a044b2231d, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: 33e1871b7f3bf4daea09c1a044b2231d, type: 3}
---- !u!1 &1655639444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 467674335625483521, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1655639443}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1655639445 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 5495533680320938416, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1655639443}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1655639446 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 160650635886731425, guid: 33e1871b7f3bf4daea09c1a044b2231d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1655639443}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1655639447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655639444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _oneGrabTransformer: {fileID: 0}
-  _twoGrabTransformer: {fileID: 0}
-  _transferHandOnSecondGrab: 0
-  _addNewGrabsToFront: 0
-  _maxGrabPoints: -1
---- !u!114 &1655639448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655639444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a7676b01585ce43908639a27765dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _relativeTo: {fileID: 1655639446}
-  _rigidbody: {fileID: 1655639445}
-  _grabbable: {fileID: 1655639447}
-  _resetGrabOnGrabsUpdated: 1
-  _physicsGrabbable: {fileID: 0}
-  _scoringModifier:
-    _maxDistance: 0.1
-    _positionRotationWeight: 0
-  _supportedGrabTypes: 3
-  _pinchGrabRules:
-    _thumbRequirement: 2
-    _indexRequirement: 1
-    _middleRequirement: 1
-    _ringRequirement: 0
-    _pinkyRequirement: 0
-    _unselectMode: 0
-  _palmGrabRules:
-    _thumbRequirement: 1
-    _indexRequirement: 2
-    _middleRequirement: 2
-    _ringRequirement: 2
-    _pinkyRequirement: 1
-    _unselectMode: 0
-  _snapType: 0
-  _travelSpeed: 1
-  _useFixedTravelTime: 0
-  _travelCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _handGrabPoints: []
 --- !u!1 &1659492634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,8 +3792,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -4338,8 +4162,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -4653,8 +4477,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -4853,8 +4677,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 80
-    damper: 50
+    spring: 60
+    damper: 40
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -5137,7 +4961,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275677271907758469}
-  m_LocalRotation: {x: -1.7347238e-17, y: 2.15808e-40, z: -5.5294307e-17, w: 1}
+  m_LocalRotation: {x: -1.7347238e-17, y: 0, z: -5.5294307e-17, w: 1}
   m_LocalPosition: {x: 0.01229044, y: -0.0007094415, z: -0.013889479}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10594,7 +10418,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2702444595949262702}
-  m_LocalRotation: {x: -3.13844e-39, y: 4.529797e-16, z: -9.259085e-17, w: 1}
+  m_LocalRotation: {x: -0, y: 4.529797e-16, z: -9.259085e-17, w: 1}
   m_LocalPosition: {x: -0.00499064, y: -0.00947063, z: 0.027257198}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14833,7 +14657,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4994293643627525110}
-  m_LocalRotation: {x: -1.7347238e-17, y: 2.15808e-40, z: -5.5294307e-17, w: 1}
+  m_LocalRotation: {x: -1.7347238e-17, y: 0, z: -5.5294307e-17, w: 1}
   m_LocalPosition: {x: 0.01229044, y: -0.0007094415, z: -0.013889479}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15753,7 +15577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550776016542183081}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -2.946, z: -36.092}
+  m_LocalPosition: {x: 0, y: -2.785, z: -36.367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17093,7 +16917,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7141916904203474205}
-  m_LocalRotation: {x: -3.13844e-39, y: 4.529797e-16, z: -9.259085e-17, w: 1}
+  m_LocalRotation: {x: -0, y: 4.529797e-16, z: -9.259085e-17, w: 1}
   m_LocalPosition: {x: -0.00499064, y: -0.00947063, z: 0.027257198}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

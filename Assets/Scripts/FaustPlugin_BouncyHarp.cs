@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using FaustUtilities_BouncyHarp;
 
@@ -65,10 +66,21 @@ public class FaustPlugin_BouncyHarp: MonoBehaviour {
 		}
 	}
 
+	private void OnEnable()
+	{
+		ctx = new Faust_Context(getBufferSize());
+		ctx.context_init(AudioSettings.outputSampleRate);
+		for (int i = 0; i < parameters.Length; i++) {
+			setParameter(i, parameters[i]);
+		}
+	}
+
 	/* @brief Fills the Unity audio buffer with the audio data computed by the plugin
     */
 	private void OnAudioFilterRead(float[] buffer, int numchannels) {
 		ctx.process(buffer, buffer.Length / numchannels, numchannels);
+		//CollisionManager.Instance.buffer = buffer;
+		//CollisionManager.Instance.numchannels = numchannels;
 	}
 
 	private int getBufferSize() {
